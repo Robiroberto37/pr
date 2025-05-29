@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Comunitatea Gurban</title>
+    <style>
+        :root {
+            --maro-inchis: #4A2C2A;
+            --auriu: #C5A368;
+            --bej: #F3E9DB;
+            --text: #2F1E1C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        body {
+            background-color: var(--bej);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Sectiune Contact Principal */
+        .contact-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 4rem;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            border-left: 4px solid var(--auriu);
+        }
+
+        .contact-item i {
+            font-size: 1.8rem;
+            color: var(--maro-inchis);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: var(--maro-inchis);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--auriu);
+        }
+
+        /* Sectiuni Membri */
+        .member-section {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .member-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--auriu);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .member-desc {
+            flex: 1;
+        }
+
+        .member-desc h3 {
+            color: var(--maro-inchis);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--auriu);
+            padding-bottom: 0.5rem;
+        }
+
+        /* Responsiv */
+        @media (max-width: 768px) {
+            .member-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .member-photo {
+                width: 150px;
+                height: 150px;
+            }
+
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+                border-left: none;
+                border-top: 4px solid var(--auriu);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sectiune Contact -->
+        <section class="contact-section">
+            <h2>Contactează-ne</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4>Email</h4>
+                        <p>gurbanteam@gmail.com</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h4>Telefon</h4>
+                        <p>+40 743 416 745</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4>Adresă</h4>
+                        <p>Str. Carol I, Nr. 41</p>
+                        <p>Cod poștal: 240178 </p>
+                        <p>Râmnicu-Vâlcea, R O M A N I A</p>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </section>
+
+        <!-- Membri Comunitate -->
+        <section class="member-section">
+            <img src="images/sii.jpg" alt="Membru 1" class="member-photo">
+            <div class="member-desc">
+                <h3>Sîiulescu Lacramioara</h3>
+                <p>Sunt o profesoară de istorie fascinată de tradiții și cultură. Îmi place să descopăr și să împărtășesc poveștile trecutului, aducând la viață moștenirea noastră prin fiecare lecție.</p>
+            </div>
+        </section>
+
+        <section class="member-section">
+            <img src="images/vlad.jpg" alt="Membru 2" class="member-photo">
+            <div class="member-desc">
+                <h3>Vlad Vasile</h3>
+                <p>Sunt un elev de 17 ani pasionat de film, actorie și istorie. Îmi place să descopăr povești, să dau viață personajelor și să înțeleg trecutul care a modelat lumea de azi.</p>
+            </div>
+        </section>
+
+        <section class="member-section">
+            <img src="images/anastasia.jpg" alt="Membru 3" class="member-photo">
+            <div class="member-desc">
+                <h3>Proteasa Anastasia</h3>
+                <p>Mă numesc Anastasia Proteasa, am 16 ani și îmi place să desenez, să pictez și să dansez. Prin artă și mișcare îmi exprim cel mai bine gândurile și emoțiile.</p>
+            </div>
+        </section>
+
+        <section class="member-section">
+            <img src="images/rby3.jpg" alt="Membru 4" class="member-photo">
+            <div class="member-desc">
+                <h3>Olaru Roberto</h3>
+                <p>Sunt un elev de 16 ani pasionat de tehnologie, mereu curios să descopăr cum funcționează lucrurile. Îmi place să învăț despre programare, inteligență artificială și inovații tech, iar în timpul liber explorez proiecte și informații din domeniu.</p>
+            </div>
+        </section>
+        <section class="community-map">
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2844293.234795974!2d23.140008594603852!3d45.84302943170978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x474d38b228531637%3A0x1b60d9793f229fa4!2sColegiul%20Na%C8%9Bional%20Mircea%20cel%20B%C4%83tr%C3%A2n!5e0!3m2!1sro!2sro!4v1716745340204!5m2!1sro!2sro" 
+                        width="100%" 
+                        height="500" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                </iframe>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

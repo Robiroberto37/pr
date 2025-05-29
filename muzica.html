@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muzica Ritualică</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --culoare-primara: #3D2B1F;
+            --culoare-secundara: #6B4423;
+            --accent-auriu: #B2976D;
+            --fundal: #FFF5E6;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'MedievalSharp', cursive;
+            background: var(--fundal) url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAOVBMVEXu7u7k5OTj4+Pm5ubq6urp6ens7Ozt7e3w8PDx8fHv7+/19fX29vb4+Pj6+vr////y8vLr6+v39/fn5+e+7XwJAAAChElEQVR4nO3b63KCMBCGYRNCghwE5Cze/7VWrVq1Vtvp0MnM95szO3T6zLIsCwAAAAAAAAAAAAAAAIC/1LZt0zR1XZdlWRRFmqZxHIdh6Pu+67q2bVuWZRiGruuGYTiO47qu7/u+74dhGMdxkiRZlhVFUdd127Z93w/DME3TsiyXy+V6vT4ej+fz+Xq93u/3x+Ox7/uyLMuyrOu6bdthGMZxnOd5Xddt2/Z9P45j13Vt2zZNU9d1VVVlWRZFUVZlWVVVXddN07Rt23XdMAyfnztN07IsH5/f933btk3T1HVdVVVZlmVZFEVR5HmepWmapmmapl3X7fv++fHv9/t6vR7HcRzHtm3ruq6qqizLoiiyLEvTNE3TZVm+vt7v9/1+Px/Px3Hse9/3rusaY6y1xhhjzLquX1/v9/t2u53neRzHtm3rui7LMv8QQuR5vq7r9Xq93W7X6/V8Pp/P5+Px2Pd927amaYqiEEIIIZRSz+fz/X7fbren0+mr0VrrP0gpjTF/2rZtXdfj8Xg8Hr9KrbXWWmutlFJKWWvXdf2qXJblfD6fz+fj8bht27Ztxpjv0h9pmv5W/nw+r9fr+Xx+PB77vu/7vq7rsiy/lVprrbXWWmutlFprvSzL5XL5qvx4PO73+/V6PZ1O+75v2/Y5lFJKKbXWWmutlFJrrbXWWmutlFJKKaWUUkqttdZaa6211lprrbXWWmutlVJKKaWUUkqttdZaa6211lprrbXWWmutlVJKKaWUUkqttdZaa6211lprrbXWWmutlVJKKaWUUkqttdZaa6211lprrbXWWv8Dk1E4dXZx+8QAAAAASUVORK5CYII=');
+            color: var(--culoare-primara);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .content-section {
+            margin: 3rem 0;
+            background: rgba(255, 255, 255, 0.9);
+            border: 3px double var(--culoare-secundara);
+            border-radius: 5px;
+            padding: 2.5rem;
+            box-shadow: 10px 10px 0 var(--accent-auriu);
+        }
+
+        .section-title {
+            font-family: 'Eagle Lake', cursive;
+            font-size: 2.5rem;
+            color: var(--culoare-secundara);
+            border-bottom: 3px wavy var(--accent-auriu);
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .content-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .content-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border: 2px groove var(--accent-auriu);
+            filter: sepia(0.4) contrast(1.1);
+            transition: all 0.3s ease;
+        }
+
+        .content-image:hover {
+            transform: scale(1.02) rotate(-0.5deg);
+            box-shadow: 8px 8px 15px rgba(0,0,0,0.3);
+            filter: sepia(0.2) contrast(1.2);
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 3rem;
+            background: linear-gradient(to bottom, var(--culoare-primara), #2B1A10);
+            color: var(--accent-auriu);
+            text-decoration: none;
+            border: 2px inset var(--accent-auriu);
+            font-family: 'Eagle Lake', cursive;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            letter-spacing: 2px;
+            background: linear-gradient(to bottom, #2B1A10, var(--culoare-primara));
+        }
+
+        @media (max-width: 992px) {
+            .content-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .content-image {
+                height: 300px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content-section">
+            <h2 class="section-title">Sunetul care Adună – Muzica Tradițională a Gurbanului</h2>
+            <div class="content-gallery">
+                <img src="images/g1.jpg" alt="Cobza" class="content-image">
+                <img src="images/g2.jpg" alt="Fluier" class="content-image">
+                <img src="images/g3.jpg" alt="Tobe" class="content-image">
+            </div>
+            <p>Gurbanul nu ar fi complet fără muzică. După ce s-au făcut rugăciunile, după ce berbecul a fost jertfit și masa a fost întinsă, peste mirosul de mâncare fierbinte și fumul subțire de la ceaune se aude primul acord: vioara începe să cânte, iar lumea se luminează. În comunitățile rudărești din județul Vâlcea, muzica este elementul care unește, care dă ritm și sens sărbătorii, care transformă totul din simplu eveniment într-o adevărată celebrare a vieții.
+
+                Cei care cântă nu sunt oricine – sunt oameni cunoscuți, cu tradiție, muzicanți lăutari care știu ce înseamnă un Gurban adevărat. Adesea, ei nu au nevoie de repetiții sau partituri: ei „simt” momentul și cântă din inimă. Lângă vioară se mai alătură acordeonul, cobza, tambalul sau chiar o tobă improvizată. Cântecele vechi, care vorbesc despre dor, dragoste, noroc sau greutăți, răsună în aerul liber, iar toți cei prezenți le știu – unii le fredonează, alții plâng, alții încep să bată ritmul din palme.
+                
+                Muzica Gurbanului nu e doar pentru distracție – ea este rugăciune veselă, poveste cântată, leac pentru suflet, iar în satele din Vâlcea, încă mai trăiește în forma sa autentică, nemodificată de vremuri.
+                
+                </p>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title"> Hora din Poiană – Dansul Care Leagă Oameni și Destine</h2>
+            <div class="content-gallery">
+                <img src="images/g4.jpg" alt="Cântăreți" class="content-image">
+                <img src="images/g5.jpg" alt="Cor" class="content-image">
+                <img src="images/g6.jpg" alt="Dans" class="content-image">
+  
+                
+            </div>
+            <p>Unul dintre cele mai așteptate momente ale Gurbanului este atunci când muzica prinde viață în pași de dans. După ce s-au ospătat și s-au binecuvântat, oamenii ies în poiană sau în curtea largă și încep hora – dansul cercului, dansul care nu are început și nu are sfârșit, exact ca legătura dintre membrii comunității. Se prind de mâini femei și bărbați, bătrâni și copii, iar cercul se învârte, bate pasul, se leagănă după ritmul lăutarilor.
+
+                În comunitățile rudărești vâlcene, hora este mai mult decât un dans: este un legământ tăcut că suntem împreună, că ne susținem, că păstrăm tradiția. Tinerii învață pașii privindu-i pe cei mai mari, iar uneori, în mijlocul horei, un lăutar schimbă melodia într-o „sârbă aprigă” sau o doină care cere tăcere și ascultare. Se dansează pe pământ bătătorit, pe iarbă sau chiar pe uliță, cu pantofi curați sau desculți – nu contează cum, ci cu ce inimă intri în cerc.
+                
+                Dansul este și momentul în care se spun glume, se fac urări, se înfiripă iubiri sau prietenii. Este clipa când Gurbanul trece de la solemnitate la sărbătoare deplină. Când începe hora, înseamnă că totul e în rânduială, că sărbătoarea a fost primită „cu bine” și că familia poate merge mai departe cu inima ușoară.
+                
+                </p>
+        </div>
+
+        <center>
+            <a href="index.html" class="back-button">
+                <i class="fas fa-music"></i>
+                Înapoi la Start
+            </a>
+        </center>
+    </div>
+</body>
+</html>

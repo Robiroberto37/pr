@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Ritual</title>
+    <style>
+        :root {
+            --culoare-primara: #8B4513;
+            --culoare-secundara: #556B2F;
+            --fundal: #F5F5DC;
+            --text-inchis: #3E2723;
+        }
+
+        body {
+            background-color: var(--fundal);
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .image-selection {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .image-option {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            margin: 10px;
+            border: 3px solid var(--culoare-primara);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .image-option:hover {
+            transform: scale(1.05);
+        }
+
+        .game-area {
+            display: none;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .reference-image {
+            border: 5px solid var(--culoare-primara);
+            border-radius: 15px;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .puzzle-grid {
+            display: grid;
+            gap: 5px;
+            background: white;
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .puzzle-piece {
+            background-size: 300% 300%;
+            border: 2px solid var(--culoare-primara);
+            cursor: grab;
+            aspect-ratio: 1;
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .puzzle-piece:hover {
+            transform: scale(1.03);
+            z-index: 2;
+        }
+
+        .controls {
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            background-color: var(--culoare-primara);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 0 5px;
+            font-size: 1rem;
+        }
+
+        .stats {
+            text-align: center;
+            margin: 1rem 0;
+            font-size: 1.2rem;
+            color: var(--text-inchis);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-selection">
+            <h2>Alege o imagine pentru puzzle</h2>
+            <div>
+                <img src="images/g1.jpg" class="image-option" data-image="g1">
+                <img src="images/g2.jpg" class="image-option" data-image="g2">
+                <img src="images/g3.jpg" class="image-option" data-image="g3">
+            </div>
+        </div>
+
+        <div class="game-area">
+            <div>
+                <div class="puzzle-grid" id="puzzleGrid" style="grid-template-columns: repeat(3, 1fr);"></div>
+                <div class="controls">
+                    <button class="btn" onclick="resetPuzzle()">Resetează</button>
+                    <button class="btn" onclick="showImageSelection()">Schimbă Imaginea</button>
+                </div>
+            </div>
+            <img src="" class="reference-image" id="referenceImage">
+        </div>
+
+        <div class="stats">
+            <span>Mutări: <span id="moveCount">0</span></span>
+            <span style="margin-left: 2rem;">Timp: <span id="timer">00:00</span></span>
+        </div>
+    </div>
+
+    <script>
+        let currentImage = '';
+        let time = 0;
+        let timerInterval;
+        let moves = 0;
+        let draggedPiece = null;
+        const PUZZLE_SIZE = 3;
+
+        document.querySelectorAll('.image-option').forEach(img => {
+            img.addEventListener('click', function() {
+                currentImage = this.dataset.image;
+                startGame();
+            });
+        });
+
+        function startGame() {
+            document.querySelector('.image-selection').style.display = 'none';
+            document.querySelector('.game-area').style.display = 'grid';
+            document.getElementById('referenceImage').src = `images/${currentImage}.jpg`;
+            initPuzzle();
+            startTimer();
+        }
+
+        function showImageSelection() {
+            document.querySelector('.image-selection').style.display = 'block';
+            document.querySelector('.game-area').style.display = 'none';
+            resetGame();
+        }
+
+        function initPuzzle() {
+            const grid = document.getElementById('puzzleGrid');
+            grid.innerHTML = '';
+            
+            const positions = shuffleArray([...Array(PUZZLE_SIZE ** 2).keys()]);
+            
+            positions.forEach(pos => {
+                const piece = document.createElement('div');
+                piece.className = 'puzzle-piece';
+                piece.draggable = true;
+                
+                const row = Math.floor(pos / PUZZLE_SIZE);
+                const col = pos % PUZZLE_SIZE;
+                
+                piece.style.backgroundImage = `url(images/${currentImage}.jpg)`;
+                piece.style.backgroundPosition = `${(col * 100) / (PUZZLE_SIZE - 1)}% ${(row * 100) / (PUZZLE_SIZE - 1)}%`;
+                
+                piece.addEventListener('dragstart', handleDragStart);
+                piece.addEventListener('dragover', handleDragOver);
+                piece.addEventListener('drop', handleDrop);
+                piece.addEventListener('dragend', handleDragEnd);
+
+                grid.appendChild(piece);
+            });
+        }
+
+        function handleDragStart(e) {
+            draggedPiece = e.target;
+            e.dataTransfer.setData('text/plain', '');
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            if (!draggedPiece) return;
+
+            const targetPiece = e.target;
+            if (targetPiece === draggedPiece) return;
+
+            // Schimbă pozițiile
+            const tempPosition = targetPiece.style.backgroundPosition;
+            targetPiece.style.backgroundPosition = draggedPiece.style.backgroundPosition;
+            draggedPiece.style.backgroundPosition = tempPosition;
+
+            moves++;
+            document.getElementById('moveCount').textContent = moves;
+            checkVictory();
+        }
+
+        function handleDragEnd() {
+            draggedPiece = null;
+        }
+
+        function checkVictory() {
+            const pieces = document.querySelectorAll('.puzzle-piece');
+            let correct = true;
+            
+            pieces.forEach((piece, index) => {
+                const correctRow = Math.floor(index / PUZZLE_SIZE);
+                const correctCol = index % PUZZLE_SIZE;
+                const correctPos = `${(correctCol * 100) / (PUZZLE_SIZE - 1)}% ${(correctRow * 100) / (PUZZLE_SIZE - 1)}%`;
+                
+                if(piece.style.backgroundPosition !== correctPos) correct = false;
+            });
+
+            if(correct) {
+                clearInterval(timerInterval);
+                alert(`Felicitări! Ai reușit în ${time} secunde cu ${moves} mutări!`);
+            }
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                time++;
+                const minutes = Math.floor(time / 60).toString().padStart(2, '0');
+                const seconds = (time % 60).toString().padStart(2, '0');
+                document.getElementById('timer').textContent = `${minutes}:${seconds}`;
+            }, 1000);
+        }
+
+        function resetGame() {
+            clearInterval(timerInterval);
+            time = 0;
+            moves = 0;
+            document.getElementById('timer').textContent = '00:00';
+            document.getElementById('moveCount').textContent = '0';
+        }
+
+        function resetPuzzle() {
+            resetGame();
+            initPuzzle();
+            startTimer();
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+    </script>
+</body>
+</html>

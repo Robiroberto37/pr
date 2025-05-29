@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunități Gurban - Moștenire Culturală</title>
+    <style>
+        :root {
+            --auriu: #C5A042;
+            --maro-inchis: #3E2723;
+            --crem: #F8F4E6;
+            --verde-oliv: #556B2F;
+            --umbra: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        body {
+            background: linear-gradient(var(--crem) 60%, rgba(248,244,230,0.3));
+            color: var(--maro-inchis);
+            line-height: 1.8;
+        }
+
+        /* Header Stilizare */
+        .hero-section {
+            height: 80vh;
+            position: relative;
+            background: linear-gradient(rgba(62,39,35,0.8), rgba(62,39,35,0.5)), url('images/hero-bg.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 5px solid var(--auriu);
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--crem);
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .title-rectangle {
+            background: rgba(197, 160, 66, 0.9);
+            padding: 2rem 4rem;
+            border: 3px solid var(--crem);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            margin: 0 2rem;
+        }
+
+        .title-rectangle:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.1) 10px,
+                rgba(255,255,255,0.1) 20px
+            );
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            color: var(--crem);
+            text-shadow: 2px 2px 4px rgba(62,39,35,0.3);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--maro-inchis);
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Sectiune Principala */
+        .community-main {
+            padding: 6rem 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Carte Comunitate */
+        .community-card {
+            background: white;
+            border-radius: 20px;
+            margin: 4rem 0;
+            box-shadow: var(--umbra);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-decoration {
+            position: absolute;
+            width: 120px;
+            height: auto;
+            opacity: 0.1;
+        }
+
+        .card-decoration--tl { top: 20px; left: 20px; }
+        .card-decoration--br { bottom: 20px; right: 20px; transform: rotate(180deg); }
+
+        .community-info {
+            padding: 4rem;
+            position: relative;
+            background: linear-gradient(to right, white 70%, rgba(255,255,255,0.8));
+        }
+
+        .community-info h2 {
+            font-size: 3rem;
+            color: var(--maro-inchis);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .community-info h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--auriu);
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            font-size: 1.1rem;
+            color: var(--verde-oliv);
+        }
+
+        .location i {
+            font-size: 1.5rem;
+            color: var(--auriu);
+        }
+
+        .community-desc {
+            font-size: 1.25rem;
+            line-height: 1.9;
+            padding-left: 2rem;
+            border-left: 3px solid var(--auriu);
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        /* Galerie */
+        .community-gallery {
+            position: relative;
+            background: var(--maro-inchis);
+            padding: 3rem;
+            display: grid;
+            place-items: center;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+            aspect-ratio: 1;
+            background: var(--crem);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.7));
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .image-overlay {
+            opacity: 1;
+        }
+
+        /* Harta */
+        .community-map {
+            margin: 8rem 0;
+            position: relative;
+        }
+
+        .map-container {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--umbra);
+            border: 3px solid var(--auriu);
+            position: relative;
+            background: white;
+            padding: 3rem;
+        }
+
+        /* Video */
+        .tradition-video {
+            width: 100%;
+            height: 700px;
+            border-radius: 20px;
+            box-shadow: var(--umbra);
+            object-fit: cover;
+            margin: 6rem 0;
+        }
+
+        /* Elemente decorative */
+        .folk-pattern {
+            position: absolute;
+            width: 200px;
+            height: auto;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        /* Responsiv */
+        @media (max-width: 1200px) {
+            .community-card {
+                grid-template-columns: 1fr;
+            }
+
+            .community-info {
+                padding: 3rem 2rem;
+            }
+
+            .community-gallery {
+                padding: 2rem;
+                min-height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .title-rectangle {
+                padding: 1.5rem 2rem;
+            }
+
+            .community-info h2 {
+                font-size: 2.2rem;
+            }
+
+            .gallery-container {
+                grid-template-columns: 1fr;
+            }
+
+            .tradition-video {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section {
+                height: 60vh;
+            }
+
+            .community-main {
+                padding: 4rem 1rem;
+            }
+
+            .community-desc {
+                font-size: 1.1rem;
+                padding-left: 1rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="hero-section">
+        <div class="hero-content">
+            <div class="title-rectangle">
+                <h1 class="hero-title">Gurbanul Viu</h1>
+                <p class="hero-subtitle">Comunități păstrătoare de tradiție</p>
+            </div>
+        </div>
+        <img src="images/pattern-border.png" class="folk-pattern" style="bottom: -50px; left: 10%">
+        <img src="images/pattern-flower.png" class="folk-pattern" style="top: 20%; right: 15%">
+    </header>
+
+    <main class="community-main">
+        <!-- Comunitatea Băbeni -->
+        <article class="community-card">
+            <img src="images/pattern-geometric.png" class="card-decoration card-decoration--tl">
+            <img src="images/pattern-geometric.png" class="card-decoration card-decoration--br">
+            
+            <div class="community-info">
+                <h2> Satele Gurbanului – Unde Tradiția Încă Se Ține cu Sfințenie</h2>
+               
+                <p class="community-desc">
+                    În județul Vâlcea, Gurbanul nu este doar o sărbătoare, ci un mod de viață păstrat în sânul unor comunități unite și mândre de originea lor. Cele mai vii și active centre ale acestei tradiții se regăsesc în satele cu vechi așezări rudărești: Laloșu, Bălcești, Zătreni, Scundu, Grădiștea, Diculești, Crețeni, Făurești și Voicești. Aici, Gurbanul nu e doar amintit – el se trăiește an de an, cu aceeași intensitate ca odinioară.
+
+În aceste localități, sărbătoarea devine un moment de reconectare. Familii întregi, chiar și cei plecați la oraș sau în străinătate, se întorc acasă pentru a lua parte la Gurban. Este un prilej rar de a fi din nou împreună, de a gusta din bucatele tradiționale, de a dansa în poiană și de a asculta poveștile celor bătrâni. Satul se animă, ulițele se umplu de viață, iar aerul miroase a lemn ars, colaci copți și mâncare de suflet.
+                </p>
+                
+               
+            </div>
+
+            <div class="community-gallery">
+                <div class="gallery-container">
+                    <div class="gallery-item">
+                        <img src="images/r12.jpg" alt="Ceremonie">
+                        <div class="image-overlay">
+                            <h3>Dansul Sacru</h3>
+                            <p>Călușarii în ceremonial</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/g7.jpg" alt="Arta populară">
+                        <div class="image-overlay">
+                            <h3>Arta Țesătorilor</h3>
+                            <p>Motiv tradițional</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="community-card">
+            <img src="images/pattern-geometric.png" class="card-decoration card-decoration--tl">
+            <img src="images/pattern-geometric.png" class="card-decoration card-decoration--br">
+            
+            <div class="community-info">
+                <h2> Rolul Bătrânilor – Păstrători de Cuvânt, Gest și Credință</h2>
+               
+                <p class="community-desc">
+                    În comunitățile rudărești vâlcene, bătrânii au un rol fundamental în păstrarea tradiției Gurbanului. Ei nu sunt doar martori ai trecutului, ci adevărați păstrători de ritual – oameni care știu cum „se face”, când „se spune” și ce „nu se schimbă niciodată”. Ei știu locurile unde se țineau cândva Gurbanurile mari, știu cum se binecuvântează berbecul, cum se împart colacii și ce cuvinte trebuie rostite în ziua sărbătorii.
+
+                    De multe ori, pregătirea Gurbanului începe cu un sfat dat de un bătrân sau o bătrână: „Anul ăsta trebuie să-l ținem, că e bine pentru copii.” Tinerii îi ascultă, pentru că în glasul lor stă o autoritate caldă, venită din timpuri în care vorbele aveau greutate. Astfel, în aceste comunități, vârstnicii nu sunt marginalizați, ci respectați ca temelie a continuității culturale. Gurbanul fără ei ar fi un gol ritualic – cu ei, este viu și complet.
+                </p>
+                
+               
+            </div>
+
+            <div class="community-gallery">
+                <div class="gallery-container">
+                    <div class="gallery-item">
+                        <img src="images/r11.jpg" alt="Ceremonie">
+                        <div class="image-overlay">
+                            <h3>Dansul Sacru</h3>
+                            <p>Călușarii în ceremonial</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/g6.jpg" alt="Arta populară">
+                        <div class="image-overlay">
+                            <h3>Arta Țesătorilor</h3>
+                            <p>Motiv tradițional</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="community-card">
+            <img src="images/pattern-geometric.png" class="card-decoration card-decoration--tl">
+            <img src="images/pattern-geometric.png" class="card-decoration card-decoration--br">
+            
+            <div class="community-info">
+                <h2> Tinerii și Copiii – Puntea dintre Tradiție și Viitor</h2>
+               
+                <p class="community-desc">
+                    Poate cel mai emoționant aspect al comunităților rudărești care țin Gurbanul este felul în care tinerii participă activ, cu interes și mândrie. Departe de imaginea unei generații dezinteresate, copiii și adolescenții din aceste sate sunt curioși, dornici să înțeleagă, să învețe și să ducă mai departe obiceiurile părinților și bunicilor lor. Ei privesc, întreabă, pun mâna la treabă și adesea filmează totul cu telefonul, pentru a arăta altora ceea ce li se pare frumos.
+
+                    Pentru mulți tineri, Gurbanul este primul moment în care simt că fac parte din ceva mai mare decât ei: o familie extinsă, o istorie vie. Învăță să gătească, să cânte, să împartă, să joace în horă. Aici învață și să respecte – nu doar mâncarea și muzica, ci și gesturile mici, tăcerile dintre rugăciuni, zâmbetele bătrânilor, regulile nescrise ale unei tradiții profunde. Prin ei, Gurbanul nu doar supraviețuiește, ci se transformă și renaște – modern, dar cu rădăcini adânci.   
+                </p>
+                
+               
+            </div>
+
+            <div class="community-gallery">
+                <div class="gallery-container">
+                    <div class="gallery-item">
+                        <img src="images/r2.jpg" alt="Ceremonie">
+                        <div class="image-overlay">
+                            <h3>Dansul Sacru</h3>
+                            <p>Călușarii în ceremonial</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/g5.jpg" alt="Arta populară">
+                        <div class="image-overlay">
+                            <h3>Arta Țesătorilor</h3>
+                            <p>Motiv tradițional</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="community-card">
+            <img src="images/pattern-geometric.png" class="card-decoration card-decoration--tl">
+            <img src="images/pattern-geometric.png" class="card-decoration card-decoration--br">
+            
+            <div class="community-info">
+                <h2> Comunitatea ca Familie Extinsă – Legături Puternice, Neclintite</h2>
+               
+                <p class="community-desc">
+                    Una dintre cele mai frumoase caracteristici ale comunităților rudărești din Vâlcea este solidaritatea. Oamenii se cunosc între ei, se ajută, se respectă și își păstrează valorile. În jurul Gurbanului se înfiripă an de an un sentiment rar în lumea de azi: acela că nu ești singur, că aparții unei familii mari, în care contează cine ești și ce transmiți mai departe.
+
+                    Chiar dacă unele familii au mai puțin, Gurbanul nu este niciodată refuzat. Se pune mână de la mână, se împrumută oală, o sticlă de vin sau un pachet de orez. Se găsește o pădurice, se curăță locul, se aprinde focul și se adună lumea. Nimeni nu este lăsat pe dinafară, pentru că în astfel de comunități, comuniunea e mai importantă decât averea, iar sufletul contează mai mult decât banii.
+                </p>
+                
+               
+            </div>
+
+            <div class="community-gallery">
+                <div class="gallery-container">
+                    <div class="gallery-item">
+                        <img src="images/r10.jpg" alt="Ceremonie">
+                        <div class="image-overlay">
+                            <h3>Dansul Sacru</h3>
+                            <p>Călușarii în ceremonial</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/g5.jpg" alt="Arta populară">
+                        <div class="image-overlay">
+                            <h3>Arta Țesătorilor</h3>
+                            <p>Motiv tradițional</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <!-- Harta Interactivă -->
+        <section class="community-map">
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2844293.234795974!2d23.140008594603852!3d45.84302943170978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x474d38b228531637%3A0x1b60d9793f229fa4!2sColegiul%20Na%C8%9Bional%20Mircea%20cel%20B%C4%83tr%C3%A2n!5e0!3m2!1sro!2sro!4v1716745340204!5m2!1sro!2sro" 
+                        width="100%" 
+                        height="500" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                </iframe>
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section class="video-section">
+            <video class="tradition-video" controls poster="images/video-poster.jpg">
+                <source src="videos/Tutorial Gurbanul rudarilor.mp4" type="video/mp4">
+                Browserul dumneavoastră nu suportă videoclipul.
+            </video>
+        </section>
+    </main>
+
+    
+
+    <!-- Elemente decorative flotante -->
+    <img src="images/pattern-leaf.png" class="folk-pattern" style="top: 1200px; left: 5%">
+    <img src="images/pattern-circle.png" class="folk-pattern" style="top: 1800px; right: 10%">
+</body>
+</html>

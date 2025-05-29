@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar Tradițional Gurban</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+   :root {
+    --culoare-primara: #8B4513;
+    --culoare-secundara: #556B2F;
+    --fundal: #F5F5DC;
+    --text-inchis: #3E2723;
+}
+
+body {
+    margin: 0;
+    font-family: 'Cormorant Garamond', serif;
+    background: var(--fundal);
+    color: var(--text-inchis);
+    line-height: 1.8;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.event-section {
+    margin-bottom: 4rem;
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 3rem;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border: 3px solid var(--culoare-primara);
+    overflow: hidden;
+}
+
+.event-date {
+    color: var(--culoare-primara);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    font-style: italic;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    border-bottom: 3px double var(--culoare-primara);
+    padding-bottom: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.event-description {
+    font-size: 1.2rem;
+    line-height: 1.9;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: linear-gradient(
+        to right,
+        rgba(255,255,255,0.9) 0%,
+        rgba(255,255,255,0.95) 100%
+    );
+    border-radius: 12px;
+    border-left: 5px solid var(--culoare-secundara);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    position: relative;
+    font-style: italic;
+}
+
+.event-description::first-letter {
+    initial-letter: 3;
+    color: var(--culoare-primara);
+    font-weight: 700;
+    margin-right: 0.5rem;
+}
+
+.event-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.event-image {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid var(--culoare-primara);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    filter: sepia(0.4) contrast(1.1);
+    cursor: pointer;
+}
+
+.event-image:hover {
+    transform: scale(1.03) rotate(1deg);
+    filter: sepia(0) brightness(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.back-button {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    background: linear-gradient(
+        135deg,
+        var(--culoare-primara) 0%,
+        var(--culoare-secundara) 100%
+    );
+    color: white;
+    text-decoration: none;
+    border-radius: 45px;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.back-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+@media (max-width: 768px) {
+    .event-section {
+        padding: 2rem;
+        margin-bottom: 3rem;
+        border-radius: 15px;
+    }
+    
+    .event-date {
+        font-size: 2rem;
+        padding-bottom: 0.8rem;
+    }
+    
+    .event-description {
+        font-size: 1.1rem;
+        padding: 1.5rem;
+    }
+    
+    .event-image {
+        height: 250px;
+    }
+    
+    .container {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .event-section {
+        padding: 1.5rem;
+    }
+    
+    .event-date {
+        font-size: 1.8rem;
+    }
+    
+    .back-button {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+    }
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="event-section">
+            <div class="event-date">20 Aprilie - Băbeni</div>
+            <p class="event-description">
+                
+Gurbanul de Sfântul Gheorghe - Băbeni
+Rudarii din Băbeni marchează sosirea primăverii prin Gurbanul de Sf. Gheorghe, un ritual complex ce include sacrificarea simbolică a unui miel. Ceremonialul începe dis-de-dimineață cu rugăciuni tradiționale, urmate de pregătirea mesei festive unde întreaga comunitate se adună. Specific acestei zone este împodobirea porților cu crengi de salcie și flori de primăvară, simbolizând renașterea naturii și purificarea spirituală.
+            </p>
+            <p class="event-description">
+                Primăvara renaște cu forță la Băbeni!
+În zori, porțile caselor sunt împodobite cu crengi de salcie și flori, iar întreaga comunitate se adună pentru un ritual profund: sacrificiul simbolic al mielului. După rugăciuni și binecuvântări, urmează o masă festivă plină de bunătăți. Atmosfera e una de speranță și purificare – un nou început pentru toți.
+            </p>
+            <div class="event-gallery">
+                <img src="images/g1.jpg" alt="Festival" class="event-image">
+                <img src="images/g2.jpg" alt="Târg" class="event-image">
+               
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="event-date">23 Aprilie - Frâncești </div>
+            <p class="event-description">
+                Gurbanul Mare - Frâncești. În comuna Frâncești, Gurbanul Mare este cel mai important eveniment al anului pentru rudari. Vechi de peste 300 de ani, acest ritual include procesiuni ceremoniale în care bătrânii comunității conduc tinerii spre râul din apropiere pentru ritualuri de purificare. Bucatele tradiționale includ "coliva rudărească" și "pâinea gurbanului", preparate doar de femeile mai în vârstă. Seara culminează cu dansuri tradiționale și muzică autentică rudărească.
+            </p>
+            <p class="event-description">
+                Cel mai vechi și important eveniment al rudărilor din zonă!
+De peste 300 de ani, acest ritual marchează inițierea tinerilor prin procesiuni până la râu pentru purificare. Femeile vârstnice pregătesc cu grijă coliva rudărească și pâinea gurbanului. Seara, dansurile și muzica tradițională creează o atmosferă plină de emoție și continuitate.
+
+
+            </p>
+            <div class="event-gallery">
+                <img src="images/g4.jpg" alt="Sânziene" class="event-image">
+                
+                <img src="images/g6.jpg" alt="Dansuri" class="event-image">
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="event-date">5 Mai - Budești </div>
+            <p class="event-description">
+                Gurbanul Primăverii - Budești
+                Celebrarea din Budești este cunoscută pentru ritualurile de mulțumire pentru rodnicia pământului. Rudarii, meșteșugari în prelucrarea lemnului, aduc ofrande simbolice și pun accent pe transmiterea meșteșugurilor tradiționale către tineri. Evenimentul include demonstrații de sculptură în lemn, împletituri din nuiele și prezentarea obiectelor tradiționale confecționate de meșterii locali, urmate de un ospăț comunitar.
+            </p>
+            <p class="event-description">
+                Un omagiu adus pământului roditor și meșteșugurilor tradiționale.
+                Rudarii din Budești, pricepuți în lemn, oferă demonstrații de sculptură, împletituri din nuiele și obiecte artizanale. E o sărbătoare a muncii și a transmiterii de valori – încheiată cu un ospăț generos și povești spuse în jurul mesei.
+            </p>
+            <div class="event-gallery">
+                
+                <img src="images/r1.jpg" alt="Ritual" class="event-image">
+                <img src="images/r2.jpg" alt="Zamă" class="event-image">
+            </div>
+        </div>
+        <div class="event-section">
+            <div class="event-date">27 Mai - Horezu </div>
+            <p class="event-description">
+                
+Festivalul Gurbanului Rudaresc - Horezu
+Festivalul din Horezu transformă ritualul tradițional într-o celebrare mai amplă, deschisă și vizitatorilor. Reunește rudari din tot județul pentru a prezenta bogăția culturală a comunității: portul tradițional, gastronomia specifică, dansurile și cântecele autentice. Festivalul include și un târg de meșteșuguri rudărești, unde se pot admira și achiziționa obiecte din lemn lucrate manual, împletituri și alte creații tradiționale.
+            </p>
+            <p class="event-description">
+                O celebrare deschisă tuturor!
+                Orașul devine centrul cultural al rudărilor din județ, prezentând porturi tradiționale, bucate alese, târguri de meșteșuguri și spectacole autentice. Este momentul ideal să cunoști frumusețea acestei culturi, să dansezi, să guști și să cumperi obiecte realizate manual.
+                
+                  </p>
+            <div class="event-gallery">
+                <img src="images/r3.jpg" alt="Procesiune" class="event-image">
+                <img src="images/r4.jpg" alt="Ritual" class="event-image">
+              
+            </div>
+        </div>
+        <div class="event-section">
+            <div class="event-date">15 Iunie - Orlești </div>
+            <p class="event-description">
+                Gurbanul de Sânziene - Orlești
+                În Orlești, Gurbanul coincide cu sărbătoarea Sânzienelor, creând un sincretism unic între tradiția rudărească și credințele populare românești. Ceremonialul include culegerea de plante medicinale în zori, împletirea coronițelor de sânziene și ritualuri specifice pentru protecția gospodăriilor. Seara, tinerii aprind focuri ritualice în jurul cărora se dansează până târziu, într-o celebrare a solstițiului de vară.
+            </p>
+            <p class="event-description">
+                Magia verii și a naturii se împletește cu credințele străvechi.
+                Tinerii culeg plante medicinale, împletesc coronițe de sânziene și aprind focuri rituale în jurul cărora dansează până târziu în noapte. Este un moment de vis, în care pământul și cerul parcă se ating, iar tradiția prinde viață.
+                  </p>
+            <div class="event-gallery">
+                <img src="images/r10.jpg" alt="Procesiune" class="event-image">
+                <img src="images/r11.jpg" alt="Ritual" class="event-image">
+               
+            </div>
+        </div>
+        <div class="event-section">
+            <div class="event-date">2 August - Măldărești </div>
+            <p class="event-description">
+              
+Gurbanul de Sfântul Ilie - Măldărești
+Comunitatea rudărească din Măldărești organizează un Gurban special dedicat protecției împotriva calamităților naturale. Ritual complex ce combină rugăciunile pentru protecție cu practicile tradiționale de prevestire a vremii pentru sezonul agricol următor. Specific acestei zone este procesiunea cu obiecte sacre rudărești păstrate în familii de generații, urmate de o masă rituală unde se servesc bucate tradiționale precum "zama de miel" și "plăcinta gurbanului".  
+            </p>
+            <p class="event-description">
+                Măldărești
+                Un Gurban al protecției și prevestirii vremii.
+                Comunitatea aduce la lumină obiecte sacre rudărești, transmise din generație în generație. Masa rituală e bogată, cu preparate specifice: "zama de miel" și "plăcinta gurbanului". Toți cei prezenți participă cu gânduri bune și speranță în recolta ce va veni.
+            </p>
+            <div class="event-gallery">
+                <img src="images/g1.jpg" alt="Procesiune" class="event-image">
+                <img src="images/r4.jpg" alt="Ritual" class="event-image">
+                
+            </div>
+        </div>
+        <div class="event-section">
+            <div class="event-date">14 Septembrie - Tomșani </div>
+            <p class="event-description">
+                Gurbanul de Toamnă - Tomșani
+                În Tomșani, Gurbanul de Toamnă marchează sfârșitul recoltei și pregătirea pentru iarnă. Ceremonialul include aducerea ofrandelor din primele roade ale toamnei și ritualuri de mulțumire pentru belșug. Specific acestei comunități este "ritualul celor șapte bucate", în care se pregătesc șapte feluri tradiționale ce sunt întâi oferite simbolic strămoșilor, apoi împărtășite cu întreaga comunitate.
+            </p>
+            <p class="event-description">
+                Ritualul belșugului și al mulțumirii.
+                După recoltă, comunitatea aduce primele roade ale toamnei și pregătește „Ritualul celor Șapte Bucate” – un festin simbolic oferit întâi strămoșilor, apoi împărțit cu toată suflarea satului. Un moment emoționant și plin de recunoștință. 
+            </p>
+            <div class="event-gallery">
+                <img src="images/r11.jpg" alt="Procesiune" class="event-image">
+                <img src="images/g4.jpg" alt="Ritual" class="event-image">
+               
+            </div>
+        </div>
+        <div class="event-section">
+            <div class="event-date">26 Octombrie - Pietrari </div>
+            <p class="event-description">
+                Închiderea anului ritual rudaresc - Pietrari
+Ultimul Gurban al anului în Pietrari marchează încheierea ciclului ritual și pregătirea pentru perioada de iarnă. Ceremonialul începe cu un ritual de purificare a spațiului comunitar, urmat de rugăciuni pentru protecția comunității în timpul iernii. Bătrânii satului transmit povești și legende rudărești tinerilor, întărindu-se astfel legătura între generații. Evenimentul se încheie cu un ospăț comunitar și promisiunea reîntâlnirii în primăvară.
+            </p>
+            <p class="event-description">
+                Ultimul Gurban din an.
+                Spațiul comunitar este purificat prin rugăciuni, iar bătrânii satului spun povești și legende rudărești, întărind legătura dintre generații. Masa de final simbolizează unitatea și promisiunea reîntâlnirii în primăvară.  
+            </p>
+            <div class="event-gallery">
+                <img src="images/r12.jpg" alt="Procesiune" class="event-image">
+                <img src="images/g7.jpg" alt="Ritual" class="event-image">
+              
+            </div>
+        </div>
+
+
+        <center>
+            <a href="index.html" class="back-button">
+                <i class="fas fa-home"></i> 
+                Înapoi Acasă
+            </a>
+        </center>
+    </div>
+</body>
+</html>

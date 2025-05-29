@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Despre Gurban - Tradiții Ancestrale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Spectral:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --culoare-primara: #2D1E0F;
+            --culoare-secundara: #5D392A;
+            --accent-auriu: #C9A959;
+            --accent-auriu-deschis: #E6D0A5;
+            --fundal: #F9F3E9;
+            --text-color: #382617;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Spectral', serif;
+            color: var(--text-color);
+            background-color: var(--fundal);
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d0bb99' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='70' height='70' viewBox='0 0 70 70' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23382617' fill-opacity='0.03' fill-rule='evenodd'%3E%3Cpath d='M0 0h35v35H0V0zm5 5h25v25H5V5zm5 5h15v15H10V10zm5 5h5v5h-5v-5zM40 5h25v25H40V5zm5 5h15v15H45V10zm5 5h5v5h-5v-5zM70 35H35v35h35V35zm-5 5H40v25h25V40zm-5 5H45v15h15V45zm-5 5h-5v5h5v-5zM30 40H5v25h25V40zm-5 5H10v15h15V45zm-5 5h-5v5h5v-5z'/%3E%3C/g%3E%3C/svg%3E");
+            z-index: -1;
+        }
+
+        .header {
+            background: linear-gradient(to bottom, rgba(45, 30, 15, 0.95), rgba(45, 30, 15, 0.8));
+            text-align: center;
+            padding: 3rem 0;
+            border-bottom: 3px solid var(--accent-auriu);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c9a959' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+            z-index: -1;
+        }
+
+        .site-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent-auriu);
+            margin: 0;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 3px rgba(0,0,0,0.5);
+        }
+
+        .site-subtitle {
+            font-family: 'Spectral', serif;
+            font-size: 1.2rem;
+            color: var(--accent-auriu-deschis);
+            font-weight: 400;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .scroll-decoration {
+            max-width: 100px;
+            margin: 2rem auto;
+            display: block;
+            opacity: 0.6;
+        }
+
+        .content-section {
+            margin: 4rem 0;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(5px);
+            border: none;
+            border-radius: 0;
+            padding: 3rem;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .content-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(90deg, transparent, var(--accent-auriu), transparent);
+        }
+
+        .content-section::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(90deg, transparent, var(--accent-auriu), transparent);
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--culoare-secundara);
+            margin-bottom: 2rem;
+            position: relative;
+            text-align: center;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent-auriu);
+        }
+
+        .section-icon {
+            font-size: 2rem;
+            color: var(--accent-auriu);
+            margin-bottom: 1rem;
+            display: block;
+            text-align: center;
+        }
+
+        .content-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .content-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border: none;
+            border-radius: 5px;
+            filter: sepia(0.3) contrast(1.1);
+            transition: all 0.5s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item:hover .content-image {
+            filter: sepia(0) contrast(1.05);
+            transform: scale(1.03);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            transform: translateY(100%);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .section-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            text-align: justify;
+            margin: 2rem 0;
+            position: relative;
+            padding: 0 1rem;
+        }
+
+        .section-text::first-letter {
+            font-size: 3.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--culoare-secundara);
+            float: left;
+            line-height: 0.8;
+            margin-right: 0.5rem;
+        }
+
+        .section-text::before {
+            content: """;
+            font-family: 'Cormorant Garamond', serif;
+            position: absolute;
+            top: -20px;
+            left: -10px;
+            font-size: 5rem;
+            color: rgba(201, 169, 89, 0.2);
+            z-index: -1;
+        }
+
+        .decorative-line {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-auriu), transparent);
+            margin: 3rem auto;
+            width: 50%;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 3rem;
+            background: linear-gradient(to bottom, var(--culoare-secundara), var(--culoare-primara));
+            color: var(--accent-auriu);
+            text-decoration: none;
+            border: none;
+            border-radius: 3px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            margin-top: 3rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .back-button:hover::before {
+            left: 100%;
+        }
+
+        .back-button i {
+            margin-right: 1rem;
+        }
+
+        .ornament {
+            font-size: 1.5rem;
+            color: var(--accent-auriu);
+            margin: 0 1rem;
+        }
+
+        footer {
+            background: linear-gradient(to top, rgba(45, 30, 15, 0.95), rgba(45, 30, 15, 0.8));
+            color: var(--accent-auriu-deschis);
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 3px solid var(--accent-auriu);
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 992px) {
+            .content-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .site-title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .content-section {
+                padding: 2rem;
+            }
+            
+            .content-image {
+                height: 300px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .site-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1 class="site-title">Gurban</h1>
+        <p class="site-subtitle">Tradiții și ritualuri ancestrale</p>
+    </header>
+
+    <div class="container">
+        <div class="content-section">
+            <i class="fas fa-scroll section-icon"></i>
+            <h2 class="section-title"> Originea și Identitatea Sărbătorii Gurban</h2>
+            
+            <p class="section-text">
+                Gurbanul este una dintre cele mai vechi și autentice sărbători ale rudărilor din județul Vâlcea, păstrată cu grijă din generație în generație. Spre deosebire de alte sărbători care au legături religioase sau provin din culturi externe, Gurbanul rudăresc este o expresie profundă a spiritualității populare, cu rădăcini în vechile practici de mulțumire și binecuvântare.
+
+În mentalitatea tradițională a rudărarilor vâlceni, Gurbanul nu este doar un simplu ospăț, ci o ofrandă adusă forțelor naturii și spiritelor strămoșești. Este o formă de recunoștință pentru sănătate, belșug, protecția familiei și roadele pământului. Sărbătoarea nu are un calendar fix – se stabilește în funcție de nevoia spirituală a familiei sau a comunității, adesea primăvara sau toamna.
+            </p>
+            
+            <div class="content-gallery">
+                <div class="gallery-item">
+                    <img src="images/g1.jpg" alt="Origini" class="content-image">
+                   
+                    <div class="gallery-caption">Izvoare istorice</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/r1.jpg" alt="Tradiție" class="content-image">
+                    <div class="gallery-caption">Transmiterea tradiției</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/r2.jpg" alt="Comunitate" class="content-image">
+                    <div class="gallery-caption">Unitatea comunității</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="decorative-line"></div>
+
+        <div class="content-section">
+            <i class="fas fa-sun section-icon"></i>
+            <h2 class="section-title">Semnificația Sărbătorii pentru Comunitatea Rudărească</h2>
+            
+            <p class="section-text">
+                Pentru comunitățile rudărești din Vâlcea, Gurbanul are un rol esențial în păstrarea identității și coeziunii sociale. Este un moment sacru în care se îmbină tradiția cu viața cotidiană, credința cu respectul față de familie și înaintași. Fiecare familie care organizează Gurbanul invită rude, vecini și prieteni, oferind un prilej rar de comuniune, împăcare și întărire a legăturilor.
+
+                În centrul sărbătorii se află ideea de binecuvântare. Gurbanul se ține adesea pentru sănătatea copiilor, pentru liniștea sufletească sau ca mulțumire pentru o dorință împlinită. Este un gest de dăruire, nu de cerere, un pact simbolic cu forțele invizibile care ocrotesc familia și comunitatea. 
+            </p>
+            
+            <div class="content-gallery">
+                <div class="gallery-item">
+                    <img src="images/g2.jpg" alt="Simboluri" class="content-image">
+                    <div class="gallery-caption">Simboluri străvechi</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/r3.jpg" alt="Ritual" class="content-image">
+                    <div class="gallery-caption">Ritualuri de protecție</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/r4.jpg" alt="Ceremonie" class="content-image">
+                    <div class="gallery-caption">Ceremonii tradiționale</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="decorative-line"></div>
+
+        <div class="content-section">
+            <i class="fas fa-book-open section-icon"></i>
+            <h2 class="section-title">Obiceiuri și Rituri Tradiționale în Gurbanul Vâlcean</h2>
+            
+            <p class="section-text">
+                Gurbanul se desfășoară, de regulă, în natură – la marginea pădurii, pe malul unei ape sau în poienile satului. Pregătirea este minuțioasă: se alege un berbec sănătos, care va fi sacrificat ritualic. Acest act nu este privit ca o simplă tăiere, ci ca o jertfă cu caracter sacru. Berbecul este binecuvântat, iar carnea este împărțită celor prezenți, după ce este gătită în ceaune mari, în mijlocul naturii.
+
+Se întind mese lungi, se aduce vin, muzica tradițională răsună – cântări vechi, doine, dar și jocuri populare care dau viață locului. Femeile pregătesc colaci și prăjituri de casă, iar copiii sunt implicați în jocuri și obiceiuri menite să le amintească cine sunt. Adesea, se aprind lumânări pentru morți, se face cruce pe pământul unde a avut loc jertfa, iar rugăciunile sunt rostite în șoaptă, cu respect adânc.
+            </p>
+            
+            <div class="content-gallery">
+                <div class="gallery-item">
+                    <img src="images/g3.jpg" alt="Moștenire" class="content-image">
+                    <div class="gallery-caption">Transmiterea valorilor</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/r4.jpg" alt="Contemporan" class="content-image">
+                    <div class="gallery-caption">Gurbanul astăzi</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/r5.jpg" alt="Viitor" class="content-image">
+                    <div class="gallery-caption">Perspective de viitor</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="decorative-line"></div>
+
+        <div class="content-section">
+            <i class="fas fa-book-open section-icon"></i>
+            <h2 class="section-title"> Gurbanul în Vâlcea – Satele Unde Tradiția Trăiește</h2>
+            
+            <p class="section-text">
+                Gurbanul este viu și astăzi în satele cu populație rudărească din sudul și estul județului Vâlcea. În localități precum Bălcești, Laloșu, Zătreni, Scundu, Grădiștea sau Făurești, această sărbătoare face parte din viața comunității, fiind transmisă oral și practic, prin exemplul bătrânilor.
+
+                Fiecare sat are propriile sale nuanțe în modul în care ține Gurbanul: unii pun accent pe rugăciune, alții pe petrecerea propriu-zisă, însă în toate cazurile este vorba despre un moment de afirmare a identității etnice și culturale. De multe ori, sărbătoarea adună și membri ai comunității plecați la oraș sau în alte zone ale țării, care se întorc acasă special pentru a fi parte din eveniment.
+            </p>
+            
+            <div class="content-gallery">
+                <div class="gallery-item">
+                    <img src="images/g4.jpg" alt="Moștenire" class="content-image">
+                    <div class="gallery-caption">Transmiterea valorilor</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/g7.jpg" alt="Contemporan" class="content-image">
+                    <div class="gallery-caption">Gurbanul astăzi</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/r12.jpg" alt="Viitor" class="content-image">
+                    <div class="gallery-caption">Perspective de viitor</div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="decorative-line"></div>
+
+        <div class="content-section">
+            <i class="fas fa-book-open section-icon"></i>
+            <h2 class="section-title">Gurbanul Azi – Continuitate, Mândrie și Respect pentru Tradiție</h2>
+            
+            <p class="section-text">
+                Într-o lume în care tradițiile se pierd ușor, Gurbanul rămâne o punte între trecut și prezent, între bunici și nepoți, între sat și lume. Tinerii din comunitățile rudărești din Vâlcea sunt tot mai dornici să redescopere rădăcinile lor, iar Gurbanul devine o ocazie de mândrie culturală, dar și un mod de a spune lumii: „Suntem aici, avem o istorie și un suflet.”
+
+                Tot mai multe familii aleg să documenteze sărbătoarea, să o filmeze, să o posteze în mediul online, dar fără să-i piardă sensul profund. Gurbanul de azi este mai vizibil, dar nu mai superficial. Cu grijă și respect, se păstrează esența spirituală a tradiției – și anume comuniunea cu cei dragi, recunoștința și păstrarea unei lumi care nu a murit, ci trăiește prin faptele celor care o iubesc.
+            </p>
+            
+            <div class="content-gallery">
+                <div class="gallery-item">
+                    <img src="images/g5.jpg" alt="Moștenire" class="content-image">
+                    <div class="gallery-caption">Transmiterea valorilor</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/r10.jpg" alt="Contemporan" class="content-image">
+                    <div class="gallery-caption">Gurbanul astăzi</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/r9.jpg" alt="Viitor" class="content-image">
+                    <div class="gallery-caption">Perspective de viitor</div>
+                </div>
+            </div>
+        </div>
+
+        <center>
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                Înapoi Acasă
+            </a>
+        </center>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">
+                <i class="fas fa-feather-alt ornament"></i>
+                "Tradiția e păstrarea focului, nu adorarea cenușii."
+                <i class="fas fa-feather-alt ornament"></i>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

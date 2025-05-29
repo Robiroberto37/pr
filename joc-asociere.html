@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asociere Gurban Vâlcea</title>
+    <style>
+        :root {
+            --verde: #4CAF50;
+            --rosu: #F44336;
+            --fundal: #FFF3E0;
+            --text: #3E2723;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: var(--fundal);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #8D6E63;
+            margin-bottom: 40px;
+        }
+
+        .coloane {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .coloana {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .item {
+            padding: 15px;
+            margin: 10px 0;
+            cursor: pointer;
+            border: 2px solid #8D6E63;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .item:hover {
+            transform: translateY(-3px);
+        }
+
+        .corect {
+            background: var(--verde) !important;
+            border-color: #2E7D32 !important;
+        }
+
+        .gresit {
+            background: var(--rosu) !important;
+            border-color: #C62828 !important;
+        }
+
+        #descriere {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            min-height: 100px;
+            border: 2px solid #8D6E63;
+        }
+
+        .reset-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 30px;
+            background: #8D6E63;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Asociere Date-Locații Gurban Vâlcea</h1>
+        
+        <div class="coloane">
+            <div class="coloana" id="date">
+                <h2>Date importante</h2>
+                <div class="item" data-id="1">Sâmbătă după Înălțarea Domnului</div>
+                <div class="item" data-id="2">Duminica Rusaliilor</div>
+                <div class="item" data-id="3">Sâmbătă de dinaintea Duminicii Tuturor Sfinților</div>
+            </div>
+
+            <div class="coloana" id="locatii">
+                <h2>Locații</h2>
+                <div class="item" data-id="1">Vâlcea (comuna Mihăești)</div>
+                <div class="item" data-id="2">Droești (comuna Bărbătești)</div>
+                <div class="item" data-id="3">Bărcănești (comuna Stoenești)</div>
+            </div>
+        </div>
+
+        <div id="descriere"></div>
+        <button class="reset-btn" onclick="resetGame()">Resetează</button>
+    </div>
+
+    <script>
+        const perechi = {
+            1: {
+                corect: true,
+                descriere: "Corect! În Vâlcea (Mihăești), Gurbanul se sărbătorește sâmbătă după Înălțarea Domnului, cu ofrandă de pâine, vin și colaci."
+            },
+            2: {
+                corect: true,
+                descriere: "Corect! La Droești (Bărbătești), obiceiul se practică duminica Rusaliilor, cu ritualuri specifice pentru fertilitate și protecția animalelor."
+            },
+            3: {
+                corect: true,
+                descriere: "Corect! În Bărcănești (Stoenești), Gurbanul are loc sâmbătă de dinaintea Duminicii Tuturor Sfinților, cu ofrande pentru strămoși."
+            }
+        };
+
+        let selectieDate = null;
+        let selectieLocatie = null;
+
+        document.querySelectorAll('.item').forEach(item => {
+            item.addEventListener('click', function() {
+                if(this.parentElement.id === 'date') {
+                    if(selectieDate) selectieDate.classList.remove('selected');
+                    selectieDate = this;
+                    this.classList.add('selected');
+                } else {
+                    if(selectieLocatie) selectieLocatie.classList.remove('selected');
+                    selectieLocatie = this;
+                    this.classList.add('selected');
+                }
+
+                verificaPereche();
+            });
+        });
+
+        function verificaPereche() {
+            if(selectieDate && selectieLocatie) {
+                const idData = selectieDate.dataset.id;
+                const idLocatie = selectieLocatie.dataset.id;
+
+                const descriereDiv = document.getElementById('descriere');
+                
+                if(idData === idLocatie) {
+                    selectieDate.classList.add('corect');
+                    selectieLocatie.classList.add('corect');
+                    descriereDiv.innerHTML = perechi[idData].descriere;
+                    descriereDiv.style.backgroundColor = '#E8F5E9';
+                } else {
+                    selectieDate.classList.add('gresit');
+                    selectieLocatie.classList.add('gresit');
+                    descriereDiv.innerHTML = "Combinație incorectă! Obiceiurile diferă între localități - consultă tradițiile specifice fiecărei zone.";
+                    descriereDiv.style.backgroundColor = '#FFEBEE';
+                }
+
+                setTimeout(() => {
+                    selectieDate.classList.remove('selected', 'gresit');
+                    selectieLocatie.classList.remove('selected', 'gresit');
+                    selectieDate = null;
+                    selectieLocatie = null;
+                }, 2000);
+            }
+        }
+
+        function resetGame() {
+            document.querySelectorAll('.item').forEach(item => {
+                item.classList.remove('corect', 'gresit', 'selected');
+            });
+            document.getElementById('descriere').innerHTML = '';
+        }
+    </script>
+</body>
+</html>

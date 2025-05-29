@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie Completa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Stiluri de bază */
+        body {
+            margin: 0;
+            background: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Container galerie */
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        /* Element galerie */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            height: 300px;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        /* Imagine thumbnail */
+        .thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Overlay text */
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 43, 127, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 15px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .image-overlay {
+            opacity: 1;
+        }
+
+        .image-title {
+            color: white;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .image-description {
+            color: white;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            text-align: center;
+        }
+
+        .lightbox-img {
+            width: auto;
+            height: auto;
+            max-width: 90%;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 5px;
+            animation: zoomIn 0.3s;
+        }
+
+        .lightbox-text {
+            color: white;
+            margin-top: 20px;
+        }
+
+        .lightbox-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .lightbox-description {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Control lightbox */
+        .close-btn {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            color: white;
+            font-size: 35px;
+            cursor: pointer;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        /* Animatie */
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Buton înapoi */
+        .back-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #002B7F, #CE1126);
+            color: white;
+            padding: 12px 30px;
+            border: 2px solid #FCD116;
+            border-radius: 25px;
+            text-decoration: none;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            font-size: 16px;
+        }
+
+        /* Responsiv */
+        @media (max-width: 992px) {
+            .gallery-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+            
+            .gallery-item {
+                height: 350px;
+            }
+            
+            .lightbox-img {
+                max-height: 60vh;
+            }
+
+            .lightbox-title {
+                font-size: 1.6rem;
+            }
+
+            .lightbox-description {
+                font-size: 1rem;
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <!-- Imagini cu overlay -->
+        <div class="gallery-item">
+            <img src="images/g5.jpg" class="thumbnail" alt="Tradiții">
+            <div class="image-overlay">
+                <h2 class="image-title">Tradiții Autentice</h2>
+                <p class="image-description">Ceremonii complete în satul Băile Olănești</p>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="images/g6.jpg" class="thumbnail" alt="Dansuri">
+            <div class="image-overlay">
+                <h2 class="image-title">Dansuri Seculare</h2>
+                <p class="image-description">Mișcări tradiționale păstrate nealterate</p>
+            </div>
+        </div>
+
+        <!-- Adaugă mai multe imagini după același pattern -->
+        <div class="gallery-item">
+            <img src="images/g7.jpg" class="thumbnail" alt="Arhitectură">
+            <div class="image-overlay">
+                <h2 class="image-title">Arhitectură Populară</h2>
+                <p class="image-description">Case tradiționale din Maramureș</p>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="images/r8.jpg" class="thumbnail" alt="Artizanat">
+            <div class="image-overlay">
+                <h2 class="image-title">Artizanat Local</h2>
+                <p class="image-description">Meșteșuguri tradiționale păstrate cu grijă</p>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="images/r9.jpg" class="thumbnail" alt="Costume">
+            <div class="image-overlay">
+                <h2 class="image-title">Portul Popular</h2>
+                <p class="image-description">Costume tradiționale din diferite regiuni</p>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="images/r10.jpg" class="thumbnail" alt="Natură">
+            <div class="image-overlay">
+                <h2 class="image-title">Peisaje Spectaculoase</h2>
+                <p class="image-description">Frumusețea naturii din Carpați</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="close-btn" onclick="closeLightbox()">&times;</span>
+        <div class="lightbox-content">
+            <img src="" class="lightbox-img" id="lightbox-image">
+            <div class="lightbox-text">
+                <h2 class="lightbox-title" id="lightbox-title"></h2>
+                <p class="lightbox-description" id="lightbox-description"></p>
+            </div>
+        </div>
+    </div>
+
+    <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+        Înapoi la Principal
+    </a>
+
+    <script>
+        // Funcționalitate Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const lightboxTitle = document.getElementById('lightbox-title');
+        const lightboxDescription = document.getElementById('lightbox-description');
+
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                const img = item.querySelector('.thumbnail');
+                const title = item.querySelector('.image-title').textContent;
+                const description = item.querySelector('.image-description').textContent;
+                
+                lightbox.classList.add('active');
+                lightboxImage.src = img.src;
+                lightboxTitle.textContent = title;
+                lightboxDescription.textContent = description;
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+        }
+
+        // Închidere la click în afara imaginii
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Închidere cu ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>

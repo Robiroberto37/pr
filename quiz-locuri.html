@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz: Istoria și Originile Tradiției Gurbanului</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:wght@400;600&display=swap');
+        
+        :root {
+            --culoare-primara: #5D4037;
+            --culoare-secundara: #795548;
+            --culoare-accent: #A1887F;
+            --culoare-highlight: #8D6E63;
+            --fundal-principal: #EFEBE9;
+            --fundal-secundar: #D7CCC8;
+            --text-inchis: #3E2723;
+            --text-deschis: #FFFFFF;
+            --verde-correct: #4CAF50;
+            --rosu-incorrect: #D32F2F;
+            --galben-accent: #FFC107;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--fundal-principal);
+            color: var(--text-inchis);
+            font-family: 'Crimson Pro', serif;
+            font-size: 18px;
+            line-height: 1.6;
+            background-image: url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23d7ccc8" fill-opacity="0.4" fill-rule="evenodd"%3E%3Ccircle cx="3" cy="3" r="1.5"/%3E%3Ccircle cx="13" cy="13" r="1.5"/%3E%3C/g%3E%3C/svg%3E');
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            background-color: var(--culoare-primara);
+            color: var(--text-deschis);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            background-image: linear-gradient(135deg, var(--culoare-primara) 0%, var(--culoare-secundara) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+            opacity: 0.1;
+        }
+
+        h1 {
+            font-family: 'Philosopher', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .quiz-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            border: 1px solid var(--fundal-secundar);
+            position: relative;
+        }
+
+        .quiz-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--galben-accent), var(--culoare-highlight));
+            border-radius: 15px 15px 0 0;
+        }
+
+        .quiz-question {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--fundal-secundar);
+        }
+
+        .quiz-question h3 {
+            color: var(--culoare-secundara);
+            margin-bottom: 1.2rem;
+            font-family: 'Philosopher', sans-serif;
+            font-weight: bold;
+            font-size: 1.4rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .quiz-question h3::before {
+            content: "\f05a";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--culoare-accent);
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background: var(--fundal-principal);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .quiz-option:hover {
+            background: var(--fundal-secundar);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .quiz-option input {
+            margin-right: 15px;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        .quiz-option.selected {
+            border-color: var(--culoare-highlight);
+            background-color: rgba(141, 110, 99, 0.1);
+        }
+
+        .quiz-option.correct {
+            border-color: var(--verde-correct);
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+
+        .quiz-option.incorrect {
+            border-color: var(--rosu-incorrect);
+            background-color: rgba(211, 47, 47, 0.1);
+        }
+
+        .feedback-text {
+            margin-top: 1rem;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--culoare-accent);
+            background: var(--fundal-secundar);
+            font-style: italic;
+            display: none;
+        }
+
+        .feedback-text.correct {
+            border-left-color: var(--verde-correct);
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+
+        .feedback-text.incorrect {
+            border-left-color: var(--rosu-incorrect);
+            background-color: rgba(211, 47, 47, 0.1);
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            background: var(--culoare-primara);
+            color: var(--text-deschis);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+            margin: 1rem 0;
+            font-family: 'Philosopher', sans-serif;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(93, 64, 55, 0.2);
+        }
+
+        .btn:hover {
+            background: var(--culoare-highlight);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(93, 64, 55, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        .quiz-progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: var(--fundal-secundar);
+            border-radius: 8px;
+            font-family: 'Philosopher', sans-serif;
+        }
+
+        .quiz-progress-bar {
+            height: 10px;
+            background: var(--fundal-secundar);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+            flex-grow: 1;
+            margin: 0 10px;
+        }
+
+        .quiz-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--culoare-accent), var(--culoare-highlight));
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .quiz-progress-text {
+            font-weight: bold;
+            color: var(--text-inchis);
+        }
+
+        .quiz-score {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .quiz-score i {
+            margin-right: 8px;
+            color: var(--galben-accent);
+        }
+
+        .decoration-corner {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .top-left {
+            top: 20px;
+            left: 20px;
+            border-top: 4px solid var(--culoare-accent);
+            border-left: 4px solid var(--culoare-accent);
+            border-top-left-radius: 15px;
+        }
+
+        .bottom-right {
+            bottom: 20px;
+            right: 20px;
+            border-bottom: 4px solid var(--culoare-accent);
+            border-right: 4px solid var(--culoare-accent);
+            border-bottom-right-radius: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            header {
+                padding: 1.5rem 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .quiz-container {
+                padding: 1.5rem;
+            }
+
+            .btn-container {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="decoration-corner top-left"></div>
+            <h1>Locuri Sacre ale Ritualului Gurbanului</h1>
+            <p>Identifică spațiile centrale în desfășurarea acestui obicei ancestral</p>
+            <div class="decoration-corner bottom-right"></div>
+        </header>
+
+        <div class="quiz-progress">
+            <div class="quiz-progress-text">Progres: <span id="progress-count">0/5</span> întrebări</div>
+            <div class="quiz-progress-bar">
+                <div class="quiz-progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="quiz-score">
+                <i class="fas fa-star"></i> Scor: <span id="current-score">0</span>
+            </div>
+        </div>
+
+        <div class="quiz-container">
+            <form id="quiz-form">
+                <div class="quiz-question" id="q1">
+                    <h3>1. Unde are loc în mod tradițional sacrificiul animalului de Gurban?</h3>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q1" value="a"> În curtea casei</label>
+                        <label class="quiz-option"><input type="radio" name="q1" value="b"> În mijlocul drumului</label>
+                        <label class="quiz-option"><input type="radio" name="q1" value="c"> În spațiul sacru desemnat de comunitate</label>
+                        <label class="quiz-option"><input type="radio" name="q1" value="d"> Într-un abator local</label>
+                    </div>
+                    <div class="feedback-text" id="feedback-q1"></div>
+                </div>
+
+                <div class="quiz-question" id="q2">
+                    <h3>2. Care este locul în care comunitatea se adună pentru masa ritualică?</h3>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q2" value="a"> În cimitir</label>
+                        <label class="quiz-option"><input type="radio" name="q2" value="b"> La primărie</label>
+                        <label class="quiz-option"><input type="radio" name="q2" value="c"> La căminul cultural sau într-o curte comună</label>
+                        <label class="quiz-option"><input type="radio" name="q2" value="d"> Într-un restaurant</label>
+                    </div>
+                    <div class="feedback-text" id="feedback-q2"></div>
+                </div>
+
+                <div class="quiz-question" id="q3">
+                    <h3>3. Ce rol are locul numit „crucea de hotar” în tradiția Gurbanului?</h3>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q3" value="a"> Este locul de întâlnire pentru dansuri</label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="b"> Este un spațiu neutru pentru rugăciune</label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="c"> Este locul sacru unde se face sacrificiul și se aduc ofrande</label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="d"> Este locul de joacă al copiilor</label>
+                    </div>
+                    <div class="feedback-text" id="feedback-q3"></div>
+                </div>
+
+                <div class="quiz-question" id="q4">
+                    <h3>4. Unde se păstrează obiectele rituale între ceremoniile Gurbanului?</h3>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q4" value="a"> Într-un lăcaș de cult</label>
+                        <label class="quiz-option"><input type="radio" name="q4" value="b"> La liderul comunității (de ex. vătaful)</label>
+                        <label class="quiz-option"><input type="radio" name="q4" value="c"> Într-un muzeu local</label>
+                        <label class="quiz-option"><input type="radio" name="q4" value="d"> La orice membru al comunității</label>
+                    </div>
+                    <div class="feedback-text" id="feedback-q4"></div>
+                </div>
+
+                <div class="quiz-question" id="q5">
+                    <h3>5. Ce semnifică simbolic locul în care se îngroapă o parte din carnea sacrificată?</h3>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q5" value="a"> Protecția animalelor</label>
+                        <label class="quiz-option"><input type="radio" name="q5" value="b"> Hrănirea străbunilor</label>
+                        <label class="quiz-option"><input type="radio" name="q5" value="c"> Fertilitatea pământului și reconectarea cu sacrul</label>
+                        <label class="quiz-option"><input type="radio" name="q5" value="d"> Simplă eliminare a resturilor</label>
+                    </div>
+                    <div class="feedback-text" id="feedback-q5"></div>
+                </div>
+
+                <div class="btn-container">
+                    <a href="index.html" class="btn"><i class="fas fa-arrow-left"></i> Înapoi</a>
+                    <button type="submit" class="btn" id="submit-btn">
+                        <i class="fas fa-check-circle"></i> Finalizează testul
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quiz-form');
+            const progressCount = document.getElementById('progress-count');
+            const progressFill = document.getElementById('progress-fill');
+            const currentScore = document.getElementById('current-score');
+
+            const correctAnswers = {
+                q1: 'c',
+                q2: 'c',
+                q3: 'c',
+                q4: 'b',
+                q5: 'c'
+            };
+
+            const explanations = {
+                q1: {
+                    correct: "Corect! Spațiul sacru este stabilit de comunitate și respectă tradiția.",
+                    incorrect: "Greșit. Sacrificiul are loc într-un spațiu special desemnat, nu oriunde."
+                },
+                q2: {
+                    correct: "Corect! Masa rituală se ține adesea în spații comunale ca simbol al unității.",
+                    incorrect: "Greșit. Comunitatea se reunește în spații comune, nu private."
+                },
+                q3: {
+                    correct: "Corect! Crucea de hotar este un loc sacru, cu rol central în ritual.",
+                    incorrect: "Greșit. Crucea de hotar este un punct de convergență spirituală."
+                },
+                q4: {
+                    correct: "Corect! Liderul păstrează în siguranță obiectele sacre până la următorul ritual.",
+                    incorrect: "Greșit. Aceste obiecte sunt păstrate cu respect de liderul comunității."
+                },
+                q5: {
+                    correct: "Corect! Acest gest simbolizează fertilitatea și legătura cu divinul.",
+                    incorrect: "Greșit. Îngroparea este un act simbolic cu rol sacru, nu doar practic."
+                }
+            };
+
+            let score = 0;
+            let answeredQuestions = 0;
+            const totalQuestions = 5;
+
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach(option => {
+                option.addEventListener('click', function () {
+                    const input = this.querySelector('input');
+                    const questionId = input.name;
+                    const selectedValue = input.value;
+                    const isCorrect = selectedValue === correctAnswers[questionId];
+
+                    if (this.classList.contains('selected') || 
+                        this.classList.contains('correct') || 
+                        this.classList.contains('incorrect')) {
+                        return;
+                    }
+
+                    const questionOptions = document.querySelectorAll(`input[name="${questionId}"]`);
+                    questionOptions.forEach(opt => {
+                        opt.parentElement.classList.remove('selected');
+                        opt.parentElement.classList.add('disabled');
+                    });
+
+                    this.classList.add('selected');
+
+                    if (isCorrect) {
+                        this.classList.add('correct');
+                        score++;
+                        currentScore.textContent = score;
+                    } else {
+                        this.classList.add('incorrect');
+                        document.querySelector(`input[name="${questionId}"][value="${correctAnswers[questionId]}"]`)
+                            .parentElement.classList.add('correct');
+                    }
+
+                    const feedbackElement = document.getElementById(`feedback-${questionId}`);
+                    feedbackElement.textContent = isCorrect ? explanations[questionId].correct : explanations[questionId].incorrect;
+                    feedbackElement.className = `feedback-text ${isCorrect ? 'correct' : 'incorrect'}`;
+                    feedbackElement.style.display = 'block';
+
+                    answeredQuestions++;
+                    progressCount.textContent = `${answeredQuestions}/${totalQuestions}`;
+                    progressFill.style.width = `${(answeredQuestions / totalQuestions) * 100}%`;
+                });
+            });
+
+            quizForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                if (answeredQuestions < totalQuestions) {
+                    alert('Te rugăm să răspunzi la toate întrebările înainte de a finaliza testul!');
+                    return;
+                }
+
+                let message;
+                if (score === totalQuestions) {
+                    message = "Excelent! Ai o înțelegere profundă a spațiilor sacre din ritualul Gurbanului.";
+                } else if (score >= 3) {
+                    message = "Bună treabă! Cunoști locurile importante, dar poți explora și mai mult simbolistica lor.";
+                } else {
+                    message = "Ai aflat lucruri noi! Mai ai de învățat despre aceste locuri sacre, dar e un început bun.";
+                }
+
+                alert(`Test finalizat!\nScorul tău: ${score}/${totalQuestions}\n\n${message}`);
+            });
+        });
+    </script>
+</body>
+
+</html>

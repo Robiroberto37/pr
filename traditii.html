@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tradiții Gurban</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --culoare-primara: #6B4423; /* Maro mai închis */
+            --culoare-secundara: #4A5C3A; /* Verde oliv */
+            --accent-auriu: #C5A145; /* Auriu mat */
+            --fundal: #F4ECD8; /* Culoare pergament */
+            --text-inchis: #2D1A0F; /* Maro antracit */
+            --textura-fundal: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c8TV1mAAAAG3RSTlNAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAvEOwtAAAFVklEQVR4XpWWB67c2BUFb3g557T/hRo9/WUMZHlgr4Bg8Z4qQgQJlHI4A8SzFVrapvmTF9O7dmYRFZ60YiBhJRCgh1FYhiLAmdvX0CzTOpNE77ME0Zty/nWWzchDtiqrmQDeuv3powQ5ta2eN0FY0InkqDD73lT9c9lEzwUNqgFHs9VQce3TVClFCQrSTfOiYkVJQBmpbq2L6iZavPnAPcoU0dSw0SUTqz/GtrGuXfbyyBniKykOWQWGqwwMA7QiYAxi+IlPdqo+hYHnUt5ZPfnsHJyNiDtnpJyayNBkF6cWoYGAMY92U2hXHF/C1M8uP/ZtYdiuj26UdAdQQSXQErwSOMzt/XWRWAz5GuSBIkwG1H3FabJ2OsUOUhGC6tK4EMtJO0ttC6IBD3kM0ve0tJwMdSfjZo+EEISaeTr9P3wYrGjXqyC1krcKdhMpxEnt5JetoulscpyzhXN5FRpuPHvbeQaKxFAEB6EN+cYN6xD7RYGpXpNndMmZgM5Dcs3YSNFDHUo2LGfZuukSWyUYirJAdYbF3MfqEKmjM+I2EfhA94iG3L7uKrR+GdWD73ydlIB+6hgref1QTlmgmbM3/LeX5GI1Ux1RWpgxpLuZ2+I+IjzZ8wqE4nilvQdkUdfhzI5QDWy+kw5Wgg2pGpeEVeCCA7b85BO3F9DzxB3cdqvBzWcmzbyMiqhzuYqtHRVG2y4x+KOlnyqla8AoWWpuBoYRxzXrfKuILl6SfiWCbjxoZJUaCBj1CjH7GIaDbc9kqBY3W/Rgjda1iqQcOJu2WW+76pZC9QG7M00dffe9hNnseupFL53r8F7YHSwJWUKP2q+k7RdsxyOB11n0xtOvnW4irMMFNV4H0uqwS5ExsmP9AxbDTc9JwgneAT5vTiUSm1E7BSflSt3bfa1tv8Di3R8n3Af7MNWzs49hmauE2wP+ttrq+AsWpFG2awvsuOqbipWHgtuvuaAE+A1Z/7gC9hesnr+7wqCwG8c5yAg3AL1fm8T9AZtp/bbJGwl1pNrE7RuOX7PeMRUERVaPpEs+yqeoSmuOlokqw49pgomjLeh7icHNlG19yjsXXa1T3KM2qTTpKHnWbXcAy0l2rzGJFZpd30wo3Q/GqDFGPY48k+UeMIIafqVBlUCN6U4sNlNeIzKUNzoEzwfW5/huNfTRs4q3YvRCqgS9QmYo4KEzLmDYnB2hcCv4gLb83I2ba7KEEHS/pm0Ed3kVfKZK9C4ScjsV8S1B0YA2VgO4Z3e8q/BjYAmgwm3x9gLQx3fjSYcPw+U2lEjv0zzgk/4YzwAAAAASUVORK5CYII=');
+        }
+    
+        body {
+            margin: 0;
+            font-family: 'Cormorant Garamond', serif;
+            background: var(--fundal) var(--textura-fundal);
+            color: var(--text-inchis);
+            line-height: 1.6;
+        }
+    
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+    
+        .content-section {
+            margin: 3rem 0;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px 8px 0 0;
+            padding: 2.5rem;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-bottom: 5px solid var(--culoare-primara);
+            transition: transform 0.3s ease;
+        }
+    
+        .content-section:hover {
+            transform: translateY(-5px);
+        }
+    
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid var(--accent-auriu);
+            pointer-events: none;
+            border-radius: 8px;
+        }
+    
+        .section-title {
+            color: var(--culoare-secundara);
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 2.3rem;
+            margin: 0 0 1.5rem;
+            padding: 0.5rem 1rem;
+            display: inline-block;
+            background: linear-gradient(to right, transparent 10%, rgba(197, 161, 69, 0.1) 50%, transparent 90%);
+            border-left: 4px solid var(--accent-auriu);
+            letter-spacing: 1px;
+        }
+    
+        .content-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+    
+        .content-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid var(--culoare-primara);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+    
+        .content-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(107,68,35,0.1) 0%, rgba(197,161,69,0.05) 100%);
+        }
+    
+        .content-image:hover {
+            transform: scale(1.03) rotate(0.5deg);
+            box-shadow: 8px 8px 25px rgba(0,0,0,0.3);
+            filter: contrast(110%) brightness(105%);
+        }
+    
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2.5rem;
+            background: var(--culoare-primara);
+            color: var(--accent-auriu);
+            text-decoration: none;
+            border-radius: 2px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--accent-auriu);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Cinzel', serif;
+        }
+    
+        .back-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(197,161,69,0.3), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+        }
+    
+        .back-button:hover {
+            background: var(--culoare-secundara);
+            letter-spacing: 1px;
+        }
+    
+        .back-button:hover::before {
+            animation: shine 1.5s;
+        }
+    
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+    
+        p {
+            font-size: 1.1rem;
+            margin: 1rem 0;
+            padding: 0 1rem;
+            border-left: 3px solid var(--accent-auriu);
+        }
+    
+        @media (max-width: 768px) {
+            .content-gallery {
+                gap: 1.5rem;
+            }
+            
+            .content-image {
+                height: 220px;
+            }
+    
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .content-section {
+                padding: 1.5rem;
+            }
+            
+            .content-image {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content-section">
+            <h2 class="section-title">Jertfa Ritualică a Berbecului – Simbol al Dăruirii și Ocrotirii</h2>
+            <div class="content-gallery">
+                <img src="images/r1.jpg" alt="Pregătire" class="content-image">
+                <img src="images/g2.jpg" alt="Ceremonie" class="content-image">
+                <img src="images/r12.jpg" alt="Ospăț" class="content-image">
+            </div>
+            <p>Una dintre cele mai importante tradiții ale Gurbanului este jertfa ritualică a berbecului, considerată un gest sacru, prin care familia oferă ceva din ceea ce are mai bun în schimbul ocrotirii divine. Alegerea animalului nu se face la întâmplare: berbecul trebuie să fie sănătos, bine hrănit, fără defecte sau boli – un simbol al forței și al vitalității. Odată ajunși la locul de Gurban, cei mai în vârstă ai familiei sau comunității pun mâna pe berbec și rostesc o rugăciune scurtă, o binecuvântare, prin care cer protecție, sănătate și belșug. În unele sate se spune că animalul simte chemarea și devine mai blând în ultimele clipe.
+
+                Sacrificiul nu este niciodată un act brutal, ci un gest de dăruire solemn. Carnea berbecului este gătită chiar acolo, pe jar, în ceaune mari, cu legume, mirodenii și grijă, iar apoi este împărțită între toți cei prezenți. Nimic nu se aruncă, nimic nu se risipește – totul este respectat și folosit, în spiritul recunoștinței. Se spune că oricine gustă din Gurban este atins de binecuvântare, iar familia care oferă jertfa va fi ferită de necazuri în anul ce urmează.</p>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title"> Coliva, Lumânările și Rugăciunile pentru Strămoși</h2>
+            <div class="content-gallery">
+                <img src="images/g4.jpg" alt="Dans 1" class="content-image">
+                <img src="images/r11.jpg" alt="Dans 2" class="content-image">
+                <img src="images/g6.jpg" alt="Muzică" class="content-image">
+            </div>
+            <p>Un alt element profund al sărbătorii este omagierea strămoșilor prin colivă, lumânări și rugăciuni discrete. Chiar dacă Gurbanul este o celebrare a vieții și a belșugului, el nu este complet fără o aducere-aminte a celor plecați dintre noi. În dimineața sărbătorii, gospodinele pregătesc colivă din grâu fiert, zahăr, nucă și scorțișoară, pe care o aduc la locul Gurbanului, așezând-o pe o masă curată, împodobită cu un ștergar vechi, țesut în casă.
+
+                Înainte de a începe petrecerea, unul dintre bătrâni – adesea femei respectate pentru înțelepciune – aprinde o lumânare și rostește o rugăciune pentru sufletele celor care au ținut Gurbanuri în trecut. Numele morților sunt pomenite cu voce scăzută, iar participanții își fac semnul crucii și gustă din colivă. Acest gest creează o legătură tainică între trecut și prezent, între vii și cei plecați, între părinți și copii. E o formă de respect și continuitate care face ca Gurbanul să nu fie doar o masă, ci o ceremonie profundă, cu suflet.</p>
+        </div>
+        <div class="content-section">
+            <h2 class="section-title"> Împărțitul Gurbanului – Un Gest de Egalitate și Frățietate</h2>
+            <div class="content-gallery">
+                <img src="images/r1.jpg" alt="Dans 1" class="content-image">
+                <img src="images/r10.jpg" alt="Dans 2" class="content-image">
+                <img src="images/r2.jpg" alt="Muzică" class="content-image">
+            </div>
+            <p>În tradiția rudărească din Vâlcea, Gurbanul nu este Gurban dacă nu este oferit cu inimă deschisă. Un obicei sacru spune că „nimeni nu pleacă flămând de la Gurban”, iar acest lucru este respectat cu sfințenie. După ce carnea este gătită și masa este pregătită – cu sarmale, colaci, prăjituri de casă, vin și alte bunătăți –, toți cei prezenți sunt invitați să se așeze și să mănânce împreună. Nu se face diferență între rude, vecini, prieteni sau simpli trecători: toți sunt bineveniți, toți sunt egali.
+
+                Acest gest de împărțire nu este doar o chestiune de ospitalitate, ci un adevărat ritual de frățietate și unitate. Se spune că atunci când împarți din Gurban cu inima curată, îți cureți sufletul și primești binecuvântarea casei. Oamenii aduc de acasă farfurii, linguri, oale, dar și vin de casă sau țuică, iar masa se transformă într-un adevărat ospăț al comunității. Atmosfera este caldă, familială, iar acest moment devine unul dintre cele mai frumoase din întregul an pentru mulți dintre participanți.</p>
+        </div>
+        <div class="content-section">
+            <h2 class="section-title">  Jocul, Muzica și Învățarea Tradiției de către Cei Tineri</h2>
+            <div class="content-gallery">
+                <img src="images/r4.jpg" alt="Dans 1" class="content-image">
+                <img src="images/r5.jpg" alt="Dans 2" class="content-image">
+                <img src="images/g7.jpg" alt="Muzică" class="content-image">
+            </div>
+            <p>Gurbanul nu este doar un ritual și o masă comună, ci și o mare sărbătoare populară, însoțită de cântec, dans și bucurie. Muzicanții – fie ei din sat sau invitați special – aduc cu ei vioara, acordeonul sau chiar tambalul, iar odată ce mesele sunt pline și burțile sunt sătule, începe petrecerea. Se cântă doine vechi, se strigă în versuri, se joacă sârbe și hore până la lăsarea serii. Bătrânii își aduc aminte de tinerețe, iar tinerii învață pașii jocului chiar acolo, pe iarbă, de la părinți și bunici.
+
+                Este și un moment educativ, în care tradiția este transmisă „pe viu”. Copiii observă, întreabă, sunt chemați să guste, să ajute, să cânte și să danseze. Astfel, Gurbanul nu rămâne o amintire a bătrânilor, ci devine o punte spre viitor, o formă de educație culturală vie, directă și autentică. Mulți tineri se simt mândri să participe, să posteze fotografii din sărbătoare, dar mai ales să ducă mai departe aceste gesturi pline de sens și apartenență.
+                
+                </p>
+        </div>
+        <center>
+            <a href="index.html" class="back-button">
+                <i class="fas fa-home"></i>
+                Pagina Principală
+            </a>
+        </center>
+    </div>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implică-te - Tradiția Gurbanului</title>
+    <style>
+        :root {
+            --culoare-primara: #8B4513;
+            --culoare-secundara: #556B2F;
+            --fundal: #F5F5DC;
+            --text-inchis: #3E2723;
+            --highlight: #DAA520;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        body {
+            background-color: var(--fundal);
+            color: var(--text-inchis);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(rgba(139, 69, 19, 0.8), rgba(85, 107, 47, 0.8)),
+                        url('images/pattern.png');
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .quiz-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+            border: 2px solid var(--culoare-primara);
+        }
+
+        .quiz-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .quiz-icon {
+            font-size: 3rem;
+            color: var(--culoare-primara);
+            margin-bottom: 1rem;
+        }
+
+        .games-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .game-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid var(--culoare-secundara);
+            transition: all 0.3s ease;
+        }
+
+        .game-box:hover {
+            background: var(--fundal);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            background: var(--culoare-primara);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .btn:hover {
+            background: var(--culoare-secundara);
+            transform: scale(1.05);
+        }
+
+        /* Modal stilizare */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+        }
+
+        .modal-content {
+            background-color: var(--fundal);
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 600px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--culoare-primara);
+        }
+
+        @media (max-width: 768px) {
+            .games-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animatie incarcare */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <section class="hero-section animate-in">
+            <h1>Implică-te în Tradiție!</h1>
+            <p>Alege dintre activitățile interactive sau testează-ți cunoștințele</p>
+        </section>
+
+        <!-- Sectiune Quiz-uri -->
+        <h2>Testează-ți Cunoașterea</h2>
+        <div class="category-grid">
+            <div class="quiz-card animate-in">
+                <i class="fas fa-book quiz-icon"></i>
+                <h3>Istorie și Origini</h3>
+                <p>Descoperă rădăcinile tradiției Gurban</p>
+                <button class="btn" data-quiz="istorie">Start Quiz</button>
+            </div>
+
+            <div class="quiz-card animate-in">
+                <i class="fas fa-music quiz-icon"></i>
+                <h3>Muzică și Dans</h3>
+                <p>Recunoaște instrumentele și ritmurile</p>
+                <button class="btn" data-quiz="muzica">Start Quiz</button>
+            </div>
+
+            <div class="quiz-card animate-in">
+                <i class="fas fa-utensils quiz-icon"></i>
+                <h3>Gastronomie</h3>
+                <p>Testează-ți cunoștințele despre preparate tradiționale</p>
+                <button class="btn" data-quiz="gastronomie">Start Quiz</button>
+            </div>
+
+            <div class="quiz-card animate-in">
+                <i class="fas fa-monument quiz-icon"></i>
+                <h3>Locuri Sacre</h3>
+                <p>Identifică locurile importante ale ritualului</p>
+                <button class="btn" data-quiz="locuri">Start Quiz</button>
+            </div>
+       
+            <div class="quiz-card animate-in">
+                <i class="fas fa-star quiz-icon"></i>
+                <h3>Simbolism și Semnificații</h3>
+                <p>Identifică semnificatile importante ale ritualului</p>
+                <button class="btn" data-quiz="simbolism">Start Quiz</button>
+            </div>
+    
+            <div class="quiz-card animate-in">
+                <i class="fas fa-users quiz-icon"></i>
+                <h3>Comunitate și Familie</h3>
+                <p>Identifică rolul comunității și al familiei în organizarea și transmiterea tradiției.</p>
+                <button class="btn" data-quiz="comunitate">Start Quiz</button>
+            </div>
+        </div>
+
+        <!-- Sectiune Jocuri -->
+        <h2>Jocuri Educative</h2>
+        <div class="games-section">
+            <div class="game-box animate-in">
+                <i class="fas fa-puzzle-piece fa-3x"></i>
+                <h3>Puzzle Simbolic</h3>
+                <p>Asamblează elementele ritualistice</p>
+                <button class="btn" data-game="puzzle">Joacă acum</button>
+            </div>
+
+            <div class="game-box animate-in">
+                <i class="fas fa-brain fa-3x"></i>
+                <h3>Memoria Tradiției</h3>
+                <p>Joc de memorare cu elemente culturale</p>
+                <button class="btn" data-game="memorie">Joacă acum</button>
+            </div>
+
+            <div class="game-box animate-in">
+                <i class="fas fa-shuffle fa-3x"></i>
+                <h3>Asociază Elementele</h3>
+                <p>Potrivește obiectele cu semnificația lor</p>
+                <button class="btn" data-game="asociere">Joacă acum</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pentru pagini nedisponibile -->
+    <div id="pageModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Pagină în construcție</h2>
+            <p>Această secțiune este momentan în dezvoltare. Vă mulțumim pentru înțelegere!</p>
+            <p>Veți fi redirecționat în curând spre pagina dorită, când aceasta va fi disponibilă.</p>
+        </div>
+    </div>
+
+    <script>
+        // Functionalitate pentru butoane
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animare la încărcare
+            const elements = document.querySelectorAll('.animate-in');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = 1;
+                }, index * 150);
+            });
+
+            // Referință la modal
+            const modal = document.getElementById('pageModal');
+            const closeModalBtn = document.querySelector('.close-modal');
+
+            // Funcție pentru a afișa modalul
+            function showModal() {
+                modal.style.display = 'block';
+                // Ascunde modalul după 3 secunde
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 3000);
+            }
+
+            // Închide modalul când se dă click pe X
+            closeModalBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            // Închide modalul când se dă click în afara lui
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            // Adaugă eveniment click pentru toate butoanele de quiz
+            const quizButtons = document.querySelectorAll('[data-quiz]');
+            quizButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const quizType = button.getAttribute('data-quiz');
+                    // Redirectare către pagina specifică de quiz
+                    window.location.href = `quiz-${quizType}.html`;
+                });
+            });
+
+            // Adaugă eveniment click pentru toate butoanele de joc
+            const gameButtons = document.querySelectorAll('[data-game]');
+            gameButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const gameType = button.getAttribute('data-game');
+                    // Redirectare către pagina specifică de joc
+                    window.location.href = `joc-${gameType}.html`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
